@@ -411,9 +411,15 @@ p {
 }
 
 .hero-mark img {
-  width: 78%;
-  border-radius: 18px;
-  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, .35));
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+
+  background: white;
+  padding: 20px;
+  border-radius: 24px;
+
+  box-shadow: 0 15px 35px rgba(0, 0, 0, .2);
   animation: float 6s ease-in-out infinite;
 }
 
@@ -883,9 +889,9 @@ section {
   position: relative;
   text-align: center;
   transition: all 0.3s ease;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .process-card:hover {
@@ -902,10 +908,10 @@ section {
   text-transform: uppercase;
   text-align: center;
   letter-spacing: .05em;
-  min-height:70px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .process-line {
@@ -967,14 +973,17 @@ section {
   transition: all 0.3s ease;
   cursor: pointer;
 }
+
 .team-card:hover {
   transform: translateY(-6px);
 }
+
 .team-card h3 {
   transition: color 0.3s ease;
 }
-.team-card:hover h3{
-    color: #2fc4b2;
+
+.team-card:hover h3 {
+  color: #2fc4b2;
 }
 
 .team-photo {
@@ -988,9 +997,7 @@ section {
   box-shadow: var(--shadow-card);
 }
 
-.team-photo:hover{
-    
-}
+.team-photo:hover {}
 
 .team-photo img {
   width: 100%;

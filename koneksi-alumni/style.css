@@ -875,88 +875,141 @@ section {
 /* =========================================================
    DESIGN PROCESS
    ========================================================= */
-.process-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
-}
-
-.process-card {
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: 26px 22px;
-  position: relative;
-  text-align: center;
-  transition: all 0.3s ease;
+/* Navigasi Tombol Tab */
+.tab-navigation {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.process-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-card);
-  border-color: rgba(45, 191, 168, .4);
-}
-
-.process-card .step-num {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 18px;
-  color: var(--teal);
-  text-transform: uppercase;
-  text-align: center;
-  letter-spacing: .05em;
-  min-height: 70px;
-  display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
   justify-content: center;
+  margin-bottom: 35px;
 }
 
-.process-line {
-  position: absolute;
-  top: 24px;
-  right: -22px;
-  width: 22px;
-  height: 2px;
-  background: var(--line);
+.tab-btn {
+  background-color: #ffffff;
+  color: var(--navy-mid, #143F66);
+  border: 1px solid var(--line, #DCE6EE);
+  padding: 12px 20px;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.process-card:last-child .process-line {
+.tab-btn:hover {
+  background-color: rgba(45, 191, 168, 0.08);
+  border-color: var(--teal);
+  transform: translateY(-2px);
+}
+
+.tab-btn.active {
+  background-color: var(--navy-deep, #0B2E4F);
+  color: #ffffff;
+  border-color: var(--navy-deep);
+  box-shadow: 0 8px 20px rgba(11, 46, 79, 0.2);
+}
+
+/* Container Konten Tab */
+.tab-content-container {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Base style untuk semua panel */
+.tab-panel {
   display: none;
+  opacity: 0;
+  transform: translateY(-15px); /* Mulai agak di atas agar efek turunnya terasa pas aktif */
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); /* Efek membal/spring halus saat turun */
 }
 
-.process-buttons {
+/* Ketika panel aktif dan tampil */
+.tab-panel.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0); /* Turun dengan mulus ke posisi asli */
+}
+
+/* Desain Kartu Detail Dalam Tab */
+.panel-inner {
+  background: #ffffff;
+  border: 1px solid var(--line, #DCE6EE);
+  border-radius: 22px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: var(--shadow-card, 0 18px 40px -22px rgba(11, 46, 79, .35));
+}
+
+.panel-inner h3 {
+  color: var(--navy-deep, #0B2E4F);
+  font-size: 22px;
+  margin-bottom: 15px;
+  letter-spacing: 0.03em;
+}
+
+.panel-inner p {
+  color: var(--ink-soft, #46566B);
+  font-size: 15.5px;
+  line-height: 1.7;
+  max-width: 650px;
+  margin: 0 auto 30px;
+}
+
+/* Susunan Tombol Link Dokumentasi */
+.panel-buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
-  margin-top: 40px;
+  gap: 16px;
+}
+
+/* Animasi transisi saat tab diklik */
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .process-btn {
-  display: flex;
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
-
-  width: 220px;
-  padding: 12px 20px;
-  margin: 0 auto;
-
-  border-radius: 14px;
-  background: #0a3b69;
-  color: white;
-  text-decoration: none;
+  
+  /* Ukuran dan Jarak */
+  min-width: 160px;
+  padding: 12px 24px;
+  
+  /* Warna Tema KonekSI (Navy Deep) */
+  background-color: var(--navy-mid, #143F66) !important;
+  color: #ffffff !important;
+  
+  /* Tipografi & Bentuk */
+  font-family: var(--font-body), sans-serif;
   font-weight: 600;
-
-  transition: all .3s ease;
+  font-size: 14px;
+  text-decoration: none !important;
+  border-radius: 12px;
+  
+  /* Efek Transisi Halus */
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(20, 63, 102, 0.15);
 }
 
+/* Efek Interaksi saat Kursor Mouse Mendekati Tombol */
 .process-btn:hover {
-  transform: translateY(-4px);
-  background: #0f4f8f;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
+  background-color: var(--blue-accent, #1C6FA8) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(28, 111, 168, 0.25);
+  color: #ffffff !important;
 }
 
 /* =========================================================
@@ -1255,4 +1308,352 @@ section {
   .hero-copy p.lede {
     font-size: 15.5px;
   }
+}
+
+/* =========================================================
+   ADDITIONAL CSS — KonekSI Alumni Enhancements
+   ========================================================= */
+
+/* Efek Sorot Halus (Glow Effect) pada Kartu Fitur & Proses saat Hover */
+.feature-card:hover, .process-card:hover {
+  border-color: var(--teal);
+  box-shadow: 0 20px 38px -12px rgba(45, 191, 168, 0.25);
+}
+
+/* Animasi Zoom & Filter pada Foto Anggota Tim */
+.team-photo {
+  position: relative;
+  overflow: hidden;
+  border: 3px solid var(--bg-card);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.team-photo img {
+  transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.3s ease;
+}
+
+.team-card:hover .team-photo img {
+  transform: scale(1.08);
+}
+
+.team-card:hover .team-photo {
+  border-color: var(--teal);
+  transform: translateY(-2px);
+}
+
+/* Kustomisasi Scrollbar Khusus Browser Modern */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--navy-mid);
+  border-radius: 999px;
+  border: 2px solid var(--bg-light);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--teal);
+}
+
+/* Animasi Reveal Halus untuk Section (Dijalankan via JavaScript di bawah) */
+.reveal-element {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-element.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================================
+   FIX VISUAL VIDEO UTK LINK ITS.ID (16:9 FULL KOTAK)
+   ========================================================= */
+
+/* Memastikan grid pembungkus membagi area dengan seimbang */
+.demo-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  gap: 28px !important;
+}
+
+/* Memastikan kartu memanjang penuh secara vertikal */
+.demo-card {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+/* Membuat wadah link menjadi kotak 16:9 murni secara responsif */
+.video-responsive-wrapper {
+  display: block !important;
+  position: relative !important;
+  width: 100% !important;
+  padding-top: 56.25% !important; /* Mengunci Aspek Rasio Layar Lebar 16:9 */
+  background: linear-gradient(135deg, #143F66 0%, #0B2E4F 100%) !important; /* Warna fallback tema KonekSI */
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+/* Desain tombol play tengah seperti YouTube murni */
+.play-button-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 2;
+}
+
+.play-icon {
+  width: 68px;
+  height: 48px;
+  background-color: #ff0000; /* Warna merah khas YouTube */
+  color: #ffffff;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.play-text {
+  color: #ffffff;
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+
+/* Efek interaksi hover */
+.video-responsive-wrapper:hover .play-icon {
+  background-color: #cc0000;
+  transform: scale(1.1);
+}
+
+.video-responsive-wrapper:hover {
+  filter: brightness(1.1);
+}
+
+/* =========================================================
+   REVISI VIDEO YOUTUBE: INTERNAL PLAYER 16:9 FULL SATU KOTAK
+   ========================================================= */
+
+/* Memastikan grid membagi dua kolom secara seimbang */
+.demo-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  gap: 28px !important;
+}
+
+/* Memastikan kartu membungkus frame video secara rapi */
+.demo-card {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 22px !important;
+  overflow: hidden !important;
+}
+
+/* Wadah pengunci aspek rasio video 16:9 layar lebar */
+.video-responsive-wrapper {
+  position: relative !important;
+  width: 100% !important;
+  padding-top: 56.25% !important; /* Standar aspek rasio video (9 / 16 * 100%) */
+  background-color: #000000 !important;
+}
+
+/* Memaksa elemen pemutar youtube mengisi ruang pembungkus secara penuh */
+.video-responsive-wrapper iframe {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+}
+
+/* =========================================================
+   3D POP-UP CARD EFFECT FOR FOUR MAIN FEATURES
+   ========================================================= */
+
+/* Pengaturan Grid agar Fleksibel dan Rapi */
+.features-grid-container {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+  gap: 30px !important;
+  margin-top: 40px;
+}
+
+/* Desain Dasar Kartu Fitur sebelum di-hover */
+.feature-pop-card {
+  background: #ffffff;
+  padding: 35px 25px;
+  border-radius: 20px;
+  border: 1px solid var(--line, #DCE6EE);
+  box-shadow: 0 10px 25px -5px rgba(11, 46, 79, 0.05);
+  text-align: center;
+  
+  /* Kunci Efek Animasi Halus (Pop-Up) */
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.3s ease;
+  will-change: transform, box-shadow;
+}
+
+/* Kotak Ikon di Dalam Kartu */
+.feature-icon-box {
+  font-size: 40px;
+  margin-bottom: 20px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.feature-pop-card h3 {
+  color: var(--navy-deep, #0B2E4F);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.feature-pop-card p {
+  color: var(--ink-soft, #46566B);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   EFEK POP-UP ELASTIS UNTUK STRUKTUR FITUR ASLI (GRID 2X2)
+   ========================================================= */
+
+/* Mengunci susunan grid bawaan agar tetap stabil berpasangan (2x2) */
+.features-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 26px !important;
+}
+
+/* Menambahkan efek pop-up elastis pada kartu asli */
+.feature-card {
+  background: var(--bg-card, #ffffff) !important;
+  border: 1px solid var(--line, #DCE6EE) !important;
+  border-radius: var(--radius-lg, 22px) !important;
+  padding: 30px 26px !important;
+  text-align: center !important;
+  
+  /* Kunci animasi transisi membal (Pop-Up) */
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              border-color 0.3s ease !important;
+  will-change: transform, box-shadow;
+}
+
+/* Memastikan teks paragraf di dalam kartu tetap rapi rata kiri */
+.feature-card p {
+  text-align: left !important;
+  margin-top: 10px !important;
+  font-size: 14.5px !important;
+  color: var(--ink-soft, #46566B) !important;
+  line-height: 1.65 !important;
+}
+
+/* Pengukuran ulang ikon SVG bawaan agar ikut bergerak interaktif */
+.feature-icon {
+  width: 54px !important;
+  height: 54px !important;
+  border-radius: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, var(--navy-deep, #0B2E4F), var(--blue-accent, #1C6FA8)) !important;
+  color: #fff !important;
+  margin: 0 auto 16px !important;
+  transition: transform 0.3s ease !important;
+}
+
+/* =========================================================
+   INTERAKSI HOVER: EFEK MELOMPAT (POP-UP) SAAT DISOROT
+   ========================================================= */
+.feature-card:hover {
+  /* Memaksa kartu melompat ke atas dan membesar secara proporsional */
+  transform: translateY(-12px) scale(1.025) !important;
+  
+  /* Mengubah warna border tepi menjadi hijau teal khas KonekSI */
+  border-color: var(--teal, #2DBFA8) !important;
+  
+  /* Membuat bayangan menebal dinamis (Efek Kedalaman 3D) */
+  box-shadow: 0 30px 60px -15px rgba(11, 46, 79, 0.2), 
+              0 15px 30px -10px rgba(45, 191, 168, 0.15) !important;
+}
+
+/* Efek Tambahan: Bulatan ikon SVG ikut sedikit membesar saat kartu di-hover */
+.feature-card:hover .feature-icon {
+  transform: scale(1.12) translateY(-2px) !important;
+}
+
+/* Aturan Responsif: Hanya saat dibuka di layar HP yang sangat kecil (max-width: 480px) */
+/* Diturunkan otomatis ke 1 kolom agar teks penjelasan tidak kepotong sempit */
+@media (max-width: 480px) {
+  .features-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* =========================================================
+   3D POP-UP CARD EFFECT FOR ABOUT IMAGE
+   ========================================================= */
+
+.about-pop-card {
+  /* Kunci animasi transisi yang elastis/membal */
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.3s ease !important;
+  will-change: transform, box-shadow;
+  cursor: pointer;
+}
+
+/* Mengatur efek bayangan dasar dan gambar di dalamnya */
+.about-pop-card img {
+  transition: transform 0.4s ease;
+}
+
+/* =========================================================
+   EFEK INTERAKTIF SAAT KURSOR DI ATAS GAMBAR (HOVER)
+   ========================================================= */
+.about-pop-card:hover {
+  /* Kartu melompat sedikit ke atas dan membesar secara proporsional */
+  transform: translateY(-10px) scale(1.02);
+  
+  /* Mengubah warna tepi kartu menjadi aksen teal KonekSI */
+  border-color: var(--teal, #2DBFA8) !important;
+  
+  /* Membuat bayangan menebal secara dinamis */
+  box-shadow: 0 30px 60px -15px rgba(11, 46, 79, 0.2), 
+              0 15px 30px -10px rgba(45, 191, 168, 0.1) !important;
+}
+
+/* Efek Tambahan: Gambar logo di dalam kotak ikut sedikit membesar */
+.about-pop-card:hover img {
+  transform: scale(1.03);
 }
